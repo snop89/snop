@@ -1,0 +1,16 @@
+pragma solidity ^0.8.7;
+contract mycontract{
+    uint amount=0;
+    function deposit(uint val) public{
+        amount+=val;
+    }
+    function with(uint val) public{
+        if(val<=amount)
+        {
+            amount-=val;
+        }
+    }
+    function ashow() public view returns(uint){
+        return amount;
+    }
+}
