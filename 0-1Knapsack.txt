@@ -1,0 +1,57 @@
+package com.program;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+class items1
+{
+    int val,weight;
+    public items1(int val,int weight)
+    {
+        this.val=val;
+        this.weight=weight;
+    }
+}
+public class Ksck01 {
+   public static int knap01(items1[] arr,int index,int capacity,int dp[][])
+   {
+       if(index==0)
+       {
+           if(arr[index].weight<=capacity)
+           {
+               return arr[index].val;
+           }
+           return 0;
+       }
+       if(dp[index][capacity]!=-1)
+       {
+           return dp[index][capacity];
+       }
+       int include=0;
+       if(arr[index].weight<=capacity)
+       {
+           include=arr[index].val+knap01(arr,index-1,capacity-arr[index].weight,dp);
+       }
+       int exlcude=knap01(arr,index-1,capacity,dp);
+       dp[index][capacity]=Math.max(include,exlcude);
+       return dp[index][capacity];
+   }
+    public static void main(String[] args) {
+      items1 [] items1s=new items1[4];
+      int maxWieght=5;
+      int dp[][]=new int[4][(maxWieght+1)];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < maxWieght+1; j++) {
+                dp[i][j]=-1;
+            }
+        }
+        Scanner sc=new Scanner(System.in);
+        for (int i = 0; i < 4; i++) {
+            int val=sc.nextInt();
+            int weight=sc.nextInt();
+            items1s[i]=new items1(val,weight);
+        }
+        System.out.println(knap01(items1s,3,maxWieght,dp));
+    }
+
+}

@@ -1,0 +1,32 @@
+public class Fibo {
+    public static void fib(int n)
+    {
+        int x=0;
+        int y=1;
+        int z=0;
+        System.out.println(x);
+        System.out.println(y);
+        for (int i = 2; i < n; i++) {
+            z = x + y;
+            System.out.println(z);
+            x = y;
+            y = z;
+        }
+    }
+    public static int fib1(int n)
+    {
+        if(n==0 || n==1) return n;
+        return fib1(n-1)+fib1(n-2);
+
+    }
+
+    public static void main(String[] args) {
+        fib(10);
+        for (int i = 0; i <40 ; i++) {
+            System.out.println(fib1(i));
+
+        }
+
+
+    }
+}
